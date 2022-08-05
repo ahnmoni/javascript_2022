@@ -55,12 +55,3 @@ https://youtu.be/EKFM5yeXdck
 수단과 방법을 인터페이스라고함!
 
 
-
-////////////////////////////////////////////////
-개발자도구 : ctrl + shift + I
-한줄 삭제 : Ctrl + shift + K
-개행 엔터 : ctrl + enter
-주석 : alt + shift + A
-파일 > 자동저장
-
-바로가기키 설정 : ctrl + K + S
