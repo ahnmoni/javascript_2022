@@ -152,7 +152,83 @@
             함수명: local
             기능: 지역명을 입력하면 지역국번을 안내한다!
         *************************************************/
-        
+        function local(){
+            // 1. 호출확인
+            console.log("국번 안내");
+
+            // 2-1. 대상선정 : 읽어올 대상 - input#local
+            let tg = document.querySelector("#local");
+
+            // 2-2. 입력된 값 읽어오기 
+            let txt = tg.value;
+            console.log("지역명: ", txt);
+
+            // 2-3. 대상선정 : 출력대상 - #info
+            let info = document.querySelector("#info");
+
+            // 메시지 변수
+            let msg; // 선언만하고 할당은 switch문에서 함
+            let code;
+
+            // 3. 지역명에 따라 분류하여 메시지 넣기
+            switch(txt){
+                case "서울" : msg = "02" ; break;
+                case "대구":
+                    msg = "053";
+                    break;
+                case "광주":
+                    msg = "062";
+                    break;
+                case "전북":
+                    msg = "063";
+                    break;
+                case "전남":
+                    msg = "061";
+                    break;
+                case "경북":
+                    msg = "054";
+                    break;
+                case "경남":
+                    msg = "055";
+                    break;
+                case "세종":
+                    msg = "044";
+                    break;
+                case "울산":
+                    msg = "052";
+                    break;
+                case "대전":
+                    msg = "042";
+                    break;
+                case "충북":
+                    msg = "043";
+                    break;
+                case "충남":
+                    msg = "041";
+                    break;
+                case "제주":
+                    msg = "064";
+                    break;
+                case "나성":
+                    msg = "나성에 가면 편지를 전해줘요~";
+                    break;
+                default: msg = "esc";
+            } // switch 끝//////// s
+
+            console.log("메시지", msg);
+
+            // 4. 메시지 만들기
+            if(msg === "esc"){
+                msg ="등록되지 않은 지역입니다.";
+            } else {
+                msg = `${txt}의 지역번호는 ${msg}입니다.`;
+            }// if 끝/////////////
+
+            // 5. 화면출력
+            // 출력대상 : #info -> info 변수
+            info.innerText = msg;
+
+        } // local 함수 끝 /////////
 
         /************************************************ 
            [ switch case 문 ]
@@ -196,6 +272,34 @@
                       -> onchange 이벤트속성을 사용함!
           *************************************************/
         
+        //window.addEventListener('load', function(){ 
+        //}
+        function gugu(U){
+
+            // 0. 전달된 선택값 읽기
+            let opt = U.value;
+
+            // 1. 함수호출확인
+            console.log('너 누구냐?', opt);
+
+            // 2. 대상선정 : 출력대상 .g1
+            let gugu = document.querySelector(".g1");
+
+            // 3. 구구단 만들기
+            // 구구단 코드 담을 변수
+            let code = `<h2>${opt}단</h2>`;
+            //code += `${opt} × 1 ＝ ${opt*1} <br>`;
+            //code += `${opt} × 2 ＝ ${opt*2} <br>`;
+            //code += `${opt} × 3 ＝ ${opt*3} <br>`;
+
+            for(let i = 1 ; i < 10 ; i++ ){
+                code += `${opt} × ${i} ＝ ${opt* i} <br>`;
+            }
+
+            // 4. 화면출력
+            gugu.innerHTML = code;
+
+        } // gugu 끝 ////////////
 
         /*************************************************** 
                [ for문 ]
@@ -233,6 +337,36 @@
                       변경될때 발생하는 이벤트
                       -> onchange 이벤트속성을 사용함!
           *************************************************/
+        function gugu2(U){
+
+            // 0. 전달된 선택값 읽기
+            let opt = U.value;
+
+            // 1. 함수호출확인
+            console.log('너 누구냐?', opt);
+
+            // 2. 대상선정 : 출력대상 .g1
+            let gugu = document.querySelector(".g2");
+
+            // 3. 구구단 만들기
+            // 구구단 코드 담을 변수
+            let code = `<h2>${opt}단</h2>`;
+
+            //for(let i = 1 ; i < 10 ; i++ ){
+            //    code += `${opt} × ${i} ＝ ${opt* i} <br>`;
+            //}
+            
+            let i = 1;
+            while(i < 10){
+                code += `${opt} × ${i} ＝ ${opt* i} <br>`;
+                i++;
+            }
+
+            // 4. 화면출력
+            gugu.innerHTML = code;
+
+        } // gugu2 끝 ////////////
+
         
 
         /**************************************************** 
@@ -352,15 +486,15 @@
     <h2>switch case문 연습</h2>
     <h3 id="info">국번안내</h3>
     <label for="local">지역명 입력:</label>
-    <input type="text" id="local" placeholder="지역명을 '도'를 빼고 쓰세요!" maxlength="10">
-    <button class="sbtn">국번문의</button>
+    <input type="text" id="local" placeholder="지역명을 '도'를 빼고 쓰세요!" maxlength="10" onkeypress="if(event.keyCode === 13) local()">
+    <button class="sbtn" onclick="local()">국번문의</button>
 
     <br /><br />
     <hr />
     <!-- for문 연습 -->
     <h2>for문 연습</h2>
     <h3>구구단 출력하기</h3>
-    <select name="sel" id="sel">
+    <select name="sel" id="sel" onchange="gugu(this)">
         <option value="1">구구단을 선택하세요!</option>
         <option value="2">2단</option>
         <option value="3">3단</option>
@@ -390,7 +524,7 @@
     <!-- while문 연습 -->
     <h2>while문 연습</h2>
     <h3>구구단 출력하기</h3>
-    <select name="sel2" id="sel2">
+    <select name="sel2" id="sel2" onchange="gugu2(this)">
         <option value="1">구구단을 선택하세요!</option>
         <option value="2">2단</option>
         <option value="3">3단</option>
