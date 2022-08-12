@@ -11,7 +11,94 @@
                 함수명: jumsu
                 기능: 점수에 따른 평가출력하기
         *********************************************/
-        
+        function jumsu(){
+            // 1. 호출확인
+            // console.log('점수가 뭐야?');
+            // 2. 대상선정 :
+            // 2-1. 점수를 가져올 대상 : 
+            var jumsu = document.getElementById("jumsu");
+
+            // 2-2. 입력된 값 읽어오기
+            var score = jumsu.value;
+            // value는 텍스트입력창의 값을 읽어오는 속성
+            
+            console.log("입력값:", score);
+            // 2-3. 출력대상 : #jexp
+            var jexp = document.querySelector("#jexp"); //★☆★☆★☆★☆★☆★☆★☆★☆
+            // 2-4. 칭찬스티커 : #jshow
+            var jshow = document.querySelector("#jshow");
+
+            
+            // 2-5-1. 숫자여부 판별하기
+            // 숫자판별 내장함수 사용 -> isNaN(값) ★☆★☆★☆★☆★☆★☆★☆★☆
+            // is Not a Number?
+            console.log("숫자가 아니니? ", isNaN(score));
+
+            // 이름없는 함수 function(){}를 변수에 할당하는 순간 그 변수는 함수가 된다! ★☆★☆★☆★☆★☆★☆★☆★☆
+            var comFn = function(){
+                jexp.style.color = "#000000";
+                jshow.style.backgroundPosition = "322px 0";
+                jumsu.value = "";
+                // 입력창에 포커스 주기(버튼을 클릭한 경우)
+                jumsu.focus();
+
+            }; //////// conFn 함수 끝///////
+
+            if (isNaN(score)){
+                // 1. 메시지 출력하기
+                jexp.innerText ="숫자만 입력해 주세요!";                
+                
+                // 2. 각종 초기화기능 함수 호출
+                comFn();
+                // focus는 입력창에 커서를 보내는 JS 내장함수
+                return false;
+            } else if( score < 0 || score > 100){                
+                jexp.innerText ="0이상 100이하만 적어주세요";
+                comFn();
+                return false;
+            }
+
+            // 3. 점수 환산하기
+            // 메시지 변수
+            var msg;
+            var fc;
+            var bgp;
+
+            if(score >= 90){
+                msg = "매우잘함";
+                fc = "blue";
+                bgp = "0 0";
+            }else if (score >= 80){
+                msg = "잘함";
+                fc = "green";
+                bgp = "-322px 0";
+            }else if (score >= 70){
+                msg = "보통";      
+                fc = "purple"; 
+                bgp = "-322px -322px";     
+            }else if (score >= 60){
+                msg = "노력요함";  
+                fc = "yellow";  
+                bgp = "-644px 0";        
+            }else {
+                msg = "재시험";
+                fc = "orange";
+                bgp = "-644px -644px";
+            }
+
+            console.log(msg, fc);
+
+            // 4. 출력하기
+            jexp.innerText = "평가결과는 " + msg;
+
+            // 5. 글자색 바꾸기
+            //document.getElementById("jexp").style.color = "blue";
+            jexp.style.color = fc;
+
+            // 6. 칭찬스티커 보이기
+            jshow.style.backgroundPosition = bgp;
+
+        } //////jumsu 함수 /////////////////
 
         /********************************************** 
             [ if문 ]
@@ -226,8 +313,8 @@
     <h2>if문 연습</h2>
     <h3 id="jexp">평가출력</h3>
     <label for="jumsu">점수입력:</label>
-    <input type="text" id="jumsu" placeholder="점수를 입력하세요!" maxlength="3" />
-    <button class="sbtn">평가하기</button>
+    <input type="text" id="jumsu" placeholder="점수를 입력하세요!" maxlength="3" onkeypress="if(event.keyCode === 13) jumsu()"/> <!--★☆★☆★☆★☆★☆★☆★☆★☆-->
+    <button class="sbtn" onclick="jumsu()">평가하기</button>
     <!-- 
         onkeypress 이벤트 속성 
         -> 키보드를 치면 발생하는 이벤트연결 속성
