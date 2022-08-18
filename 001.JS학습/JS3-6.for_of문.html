@@ -30,20 +30,123 @@
             console.log("로딩완료!");
 
             // 2. 이벤트 대상: .btngo
-            
+            const btngo = document.querySelectorAll('.btngo');
 
             // 3. 출력대상 : .minfo
+            const minfo = document.querySelectorAll('.minfo');
             
 
             // 4. 버튼에 클릭이벤트 설정하기
-            // for(시;한;증){} -> 일반for문으로 설정할 수 있지만
-            // 너무나 설정이 뻔하고 귀찮다!!!
+            // for(시;한;증){} -> 일반for문으로 설정할 수 있지만 너무나 설정이 뻔하고 귀찮다!!!
             // for of문은 이런 뻔한 설정을 간단히 처리해줌!
 
             // 일반for문셋팅
-            // for (let i = 0; i < btngo.length; i++) {
-            //     console.log(btngo[i]);
-            // }
+            //for (let i = 0; i < btngo.length; i++) {
+            //    console.log(btngo[i]);
+            //}
+            for(let x of btngo){
+                // 변수 x에는 버튼요소 개수만큼 하나씩 담긴다!
+                // x는 각각의 요소자식
+                // 순번변수가 필요없을때 사용
+                //console.log(x);
+
+                // 클릭이벤트 속성 세팅하기!
+                // x.onclick = function(){};
+                x.onclick = ()=>{
+
+                    // 각 요소의 텍스트 읽어보기
+                    let btxt = x.innerText;
+                    console.log('버튼텍스트: ', btxt);
+
+                    // 데이터 타겟변수 : 배열변수와 매칭함!
+                    let data;
+
+                    // 버튼별로 구분하여 배열변수를 data변수에 할당!
+                    switch(btxt){
+                        case "조제" : data = mv1; break;
+                        case "원더 우먼 1984" : data = mv2; break;
+                        case "도굴" : data = mv3; break;
+                    } //switch 끝//////////////
+
+                    // 선택된 배열값은?
+                    console.log('선택배열값: ', data);
+
+                    // 출력대상박스 :.minfo -> minfo변수
+                    minfo.forEach((ele,idx)=>{
+                        // ele - 요소자신, idx - 순번
+                        ele.innerText = data[idx];
+                    });
+
+                    /************************************ 
+                        [ 배열과 컬렉션을 위한 forEach() ]
+                        forEach()는 
+                        배열과 컬렉션을 위한 JS메서드임!
+
+                        1. 컬렉션에 사용시
+
+                        컬렉션.forEach(
+                            function(ele,idx,obj){코드})
+                        ________________________________
+
+                        컬렉션.forEach(
+                            (ele,idx,obj) => {코드})
+
+                        _______
+                        전달변수
+                        1) ele -> 첫번째 전달변수 : 요소자신
+                        2) idx -> 두번째 전달변수 : 순번
+                        3) obj -> 세번째 전달변수 : 전체컬렉션
+
+                        *****************************
+
+                        
+                        2. 배열에 사용시
+
+                        배열.forEach(
+                            function(val,idx,obj){코드})
+                        ________________________________
+
+                        배열.forEach(
+                            (val,idx,obj) => {코드})
+
+                        _______
+                        전달변수
+                        1) val -> 첫번째 전달변수 : 배열값
+                        2) idx -> 두번째 전달변수 : 순번
+                        3) obj -> 세번째 전달변수 : 전체배열
+
+                        ========================
+
+                        공통사항)
+                        - 전달변수의 순서와 개수가 중요함
+                        - 전달변수명은 어떻게 지어도 무관
+                        - 값이나 요소만 쓰려면 변수를 하나만씀
+                        - 순번까지 쓰려면 변수를 두개씀
+                        -> 보통 변수를 2개까지 많이 씀
+                        - 명령어를 사용하여 로직을 수행하는 것은
+                        함수 중괄호안에 코딩하면 된다!
+
+
+                    ************************************/
+
+
+                    // for of를 사용하여 각 요소게 값 넣기!
+                    // 순번변수
+                    //let seq = 0;
+                    //for(let y of minfo){
+                    //    // y는 각각의 .minfo
+                    //    // console.log(y);
+
+                    //    y.innerText = data[seq];
+
+                    //    //순번증가
+                    //    seq++;
+
+                    //} ////// for of 끝 //////
+
+
+                }; /// onclick 끝////////
+            }
 
             
 
