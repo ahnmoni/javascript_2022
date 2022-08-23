@@ -113,11 +113,17 @@
             // 버튼요소 클릭시 글자 바꾸기 //////
 
             // 기존방식 /////
-            
+            btn[0].onclick = function(){
+                // 클릭된 요소 자신은 this 키워드로!
+                this.innerText = '내가 니 애비다!';
+            };
 
 
             // 새로운 방식 ////
-            
+            btn[1].onclick = () => {                
+                //event.currentTarget
+                event.currentTarget.innerText = '내가 누군지 아무도 몰라!';
+            };
 
 
 
