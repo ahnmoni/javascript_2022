@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        $(() => {
+
+            // for문
+            for(let i = 1 ; i < 10 ; i++ ){
+                code += `${opt} × ${i} ＝ ${opt* i} <br>`;
+            }
+
+                // while 문
+                let i = 1;
+                while(i < 10){
+                    code += `${opt} × ${i} ＝ ${opt* i} <br>`;
+                    i++;
+                }
+
+                // for of
+                // for(변수 of 배열/컬렉션){실행문}
+                for(let x of btns){
+                    //x는 각각의 버튼요소
+                    x.onclick = ()=>{};
+                }
+
+                let seq = 0;
+                for(let y of minfo){
+                    y.innerText = data[seq];
+                    seq++;
+                } 
+
+            // forEach
+            // 컬렉션.forEach((ele,idx,obj) => {코드})
+            btns.forEach((ele)=>{
+                ele.onclick = ()=>{}                
+            });
+
+            minfo.forEach((ele,idx)=>{
+                // ele - 요소자신, idx - 순번
+                ele.innerText = data[idx];
+            });
+
+
+        })
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
